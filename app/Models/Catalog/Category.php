@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Kalnoy\Nestedset\NodeTrait;
+use MVG\Models\Catalog\Traits\Attribute\CategoryAttribute;
 use MVG\Models\Catalog\Traits\Relationship\CategoryRelationship;
 use MVG\Models\Traits\Sluggable;
 use MVG\Models\Traits\Uuid;
@@ -17,6 +18,7 @@ class Category extends Model
 {
     use Notifiable,
         SoftDeletes,
+        CategoryAttribute,
         CategoryRelationship,
         Uuid,
         Sluggable,

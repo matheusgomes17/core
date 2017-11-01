@@ -2,15 +2,18 @@
 
 namespace MVG\Repositories\Backend\Catalog;
 
+use Illuminate\Database\Eloquent\Model;
+use MVG\Events\Backend\Catalog\Product\ProductDeactivated;
+use MVG\Events\Backend\Catalog\Product\ProductReactivated;
 use MVG\Models\Catalog\Product;
 use MVG\Models\Catalog\Category;
 use MVG\Events\Backend\Catalog\Product\ProductCreated;
 use MVG\Events\Backend\Catalog\Product\ProductUpdated;
 use MVG\Events\Backend\Catalog\Product\ProductDeleted;
 use MVG\Events\Backend\Catalog\Product\ProductPermanentlyDeleted;
+use MVG\Repositories\Backend\ImageRepository;
 use MVG\Repositories\BaseEloquentRepository;
 use MVG\Repositories\Traits\CacheResults;
-use MVG\Repositories\Traits\ImageManager;
 use MVG\Exceptions\GeneralException;
 use Kalnoy\Nestedset\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -21,8 +24,7 @@ use Illuminate\Support\Facades\DB;
  */
 class ProductRepository extends BaseEloquentRepository
 {
-    use CacheResults,
-        ImageManager;
+    use CacheResults;
 
     /**
      * @var array
@@ -87,7 +89,7 @@ class ProductRepository extends BaseEloquentRepository
     }
 
     /**
-     * @param int    $paged
+     * @param int $paged
      * @param string $orderBy
      * @param string $sort
      *
@@ -102,7 +104,7 @@ class ProductRepository extends BaseEloquentRepository
     }
 
     /**
-     * @param int    $paged
+     * @param int $paged
      * @param string $orderBy
      * @param string $sort
      *
@@ -118,7 +120,6 @@ class ProductRepository extends BaseEloquentRepository
 
     /**
      * @param array $data
-     *
      * @return Product
      */
     public function create(array $data): Product
@@ -129,7 +130,6 @@ class ProductRepository extends BaseEloquentRepository
                 'user_id' => auth()->user()->id,
                 'category_id' => $data['category_id'],
                 'name' => $data['name'],
-                'slug' => str_slug($data['name']),
                 'height' => $data['height'],
                 'membership' => $data['membership'],
                 'description' => $data['description'],
@@ -149,16 +149,11 @@ class ProductRepository extends BaseEloquentRepository
             if ($product) {
 
                 if (request()->hasFile('cover')) {
+
+                    $image = new ImageRepository();
                     $file = request()->file('cover');
-
-                    if ($this->isAlreadyUploaded($file)) {
-                        abort(400, 'Esse arquivo já foi enviado antes.');
-                    }
-
-                    $path = $file->store('uploads/products');
-                    $product->cover = $path;
+                    $product->cover = $image->saveImage($file, 'products', 250);
                     $product->save();
-
                 }
 
                 event(new ProductCreated($product));
@@ -173,7 +168,6 @@ class ProductRepository extends BaseEloquentRepository
     /**
      * @param mixed $id
      * @param array $data
-     *
      * @return Product
      */
     public function update($id, array $data) : Product
@@ -189,21 +183,17 @@ class ProductRepository extends BaseEloquentRepository
                 'membership' => $data['membership'],
                 'description' => $data['description'],
                 'sold' => isset($data['sold']) ? true : false,
-                'status' => isset($data['status']) ? 1 : 0,
+                'featured' => isset($data['featured']) ? true : false,
+                'made_history' => isset($data['made_history']) ? true : false,
+                'active' => isset($data['active']) ? 1 : 0
             ])) {
+                if (request()->hasFile('cover')) {
 
-                if (isset($data['cover'])) {
-                    foreach ($product->getImageType() as $value) {
-                        unlink($product->getImagePath($value));
-                    }
-
-                    $product->image->delete();
-                    $cover = new AttacherModel();
-                    $cover->setupFile($data['cover']);
-                    $cover->subject_id = $product->id;
-                    $cover->subject_type = $this->model;
-                    $cover->file_name = str_random(56) . '.' . $cover->file_extension;
-                    $cover->save();
+                    $image = new ImageRepository();
+                    $file = request()->file('cover');
+                    unlink(public_path($product->cover));
+                    $product->cover = $image->saveImage($file, 'products', 250);
+                    $product->save();
                 }
 
                 event(new ProductUpdated($product));
@@ -217,10 +207,7 @@ class ProductRepository extends BaseEloquentRepository
 
     /**
      * @param $id
-     *
-     * @throws GeneralException
-     *
-     * @return bool
+     * @return mixed
      */
     public function delete($id)
     {
@@ -239,8 +226,7 @@ class ProductRepository extends BaseEloquentRepository
     }
 
     /**
-     * @param Product $user
-     *
+     * @param $id
      * @return Product
      * @throws GeneralException
      */
@@ -262,5 +248,54 @@ class ProductRepository extends BaseEloquentRepository
 
             throw new GeneralException(__('exceptions.backend.catalog.products.delete_error'));
         });
+    }
+
+    /**
+     * @param Model $product
+     *
+     * @throws GeneralException
+     *
+     * @return bool
+     */
+    public function restore(Model $product)
+    {
+        if (is_null($product->deleted_at)) {
+            throw new GeneralException(trans('exceptions.backend.catalog.products.cant_restore'));
+        }
+
+        if ($product->restore()) {
+            event(new ProductRestored($product));
+            return true;
+        }
+
+        throw new GeneralException(trans('exceptions.backend.catalog.products.restore_error'));
+    }
+
+    /**
+     * @param Model $product
+     * @param $status
+     *
+     * @throws GeneralException
+     *
+     * @return bool
+     */
+    public function mark(Model $product, $status)
+    {
+        $product->status = $status;
+
+        switch ($status) {
+            case 0:
+                event(new ProductDeactivated($product));
+                break;
+            case 1:
+                event(new ProductReactivated($product));
+                break;
+        }
+
+        if ($product->save()) {
+            return true;
+        }
+
+        throw new GeneralException(trans('exceptions.backend.catalog.products.mark_error'));
     }
 }

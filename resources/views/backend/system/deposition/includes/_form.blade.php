@@ -9,7 +9,11 @@
             <div class="col-sm-6">
                 <h4 class="card-title mb-0">
                     {{ __('labels.backend.system.depositions.management') }}
-                    <small class="text-muted">{{ __('labels.backend.system.depositions.create') }}</small>
+                    <small class="text-muted">
+                        @if(isset($model)) {{ __('labels.backend.system.depositions.edit') }}
+                        @else {{ __('labels.backend.system.depositions.create') }}
+                        @endif
+                    </small>
                 </h4>
             </div><!--col-->
         </div><!--row-->
@@ -95,10 +99,11 @@
             </div><!--col-->
 
             <div class="col text-right">
-                {{ form_submit(__('buttons.general.crud.create')) }}
+                @if(isset($model)) {{ form_submit(__('buttons.general.crud.edit')) }}
+                @else {{ form_submit(__('buttons.general.crud.create')) }}
+                @endif
             </div><!--col-->
         </div><!--row-->
     </div><!--card-footer-->
 </div><!--card-->
-
 {{ Form::close() }}

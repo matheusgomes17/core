@@ -106,6 +106,6 @@ class CategoryController extends Controller
     {
         $this->categoryRepository->delete($category->id);
         
-        return redirect()->route('admin.catalog.category.deleted')->withFlashSuccess(__('alerts.backend.categories.deleted'));
+        return redirect()->route('admin.catalog.category.index')->withFlashSuccess(__('alerts.backend.categories.deleted'));
     }
 }

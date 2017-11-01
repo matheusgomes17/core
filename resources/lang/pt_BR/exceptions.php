@@ -55,8 +55,9 @@ return [
             'categories' => [
                 'main'              => 'Categoria Principal',
                 'create_error'      => 'Houve um problema ao criar essa categoria. Por favor, tente novamente.',
-                'delete_error'      => 'Houve um problema ao excluir essa categoria. Por favor, tente novamente.',
                 'update_error'      => 'Houve um problema ao atualizar essa categoria. Por favor, tente novamente.',
+                'delete_error'      => 'Houve um problema ao excluir essa categoria. Por favor, tente novamente.',
+                'delete_first'      => 'É preciso excluir todos os produtos para excluir está categoria permanentemente.',
                 'does_not_exist'    => 'Esta categoria não existe.',
             ],
             'products' => [
@@ -67,6 +68,15 @@ return [
                 'belongs_user'      => 'Este produto não pertence ao seu usuário!',
                 'category_info'     => 'Não existem categorias cadastradas.',
                 'category_error'    => 'O produto deve ter uma categoria para ser cadastrado.',
+            ],
+        ],
+        'system' => [
+            'depositions' => [
+                'create_error'      => 'Houve um problema ao criar esse depoimento. Por favor, tente novamente.',
+                'update_error'      => 'Houve um problema ao atualizar este depoimento. Por favor, tente novamente.',
+                'delete_error'      => 'Houve um problema ao excluir este depoimento. Por favor, tente novamente.',
+                'delete_first'      => 'Este depoimento deve ser excluído antes para poder ser excluído permanentemente.',
+                'belongs_user'      => 'Este depoimento não pertence ao seu usuário!',
             ],
         ]
     ],

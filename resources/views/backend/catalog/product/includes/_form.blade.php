@@ -9,7 +9,11 @@
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
                     {{ __('labels.backend.catalog.products.management') }}
-                    <small class="text-muted">{{ __('labels.backend.catalog.products.create') }}</small>
+                    <small class="text-muted">
+                        @if(isset($model)) {{ __('labels.backend.catalog.products.edit') }}
+                        @else {{ __('labels.backend.catalog.products.create') }}
+                        @endif
+                    </small>
                 </h4>
             </div><!--col-->
         </div><!--row-->
@@ -26,6 +30,7 @@
                     <div class="col-md-10">
                         {{ html()->file('cover')
                             ->class('form-control')
+                            ->attribute('accept', 'image/*')
                             ->required() }}
                     </div><!--col-->
                 </div><!--form-group-->
@@ -36,11 +41,11 @@
                         ->for('name') }}
 
                     <div class="col-md-10">
-                        {{ html()->text('name')
-                            ->class('form-control')
-                            ->placeholder(__('validation.attributes.backend.catalog.products.name'))
-                            ->attribute('maxlength', 191)
-                            ->required() }}
+                        {{ Form::text('name', null, [
+                            'class' => 'form-control',
+                            'maxlength' => 191,
+                            'placeholder' => __('validation.attributes.backend.catalog.products.name'),
+                            'required']) }}
                     </div><!--col-->
                 </div><!--form-group-->
 
@@ -70,10 +75,11 @@
                         ->for('height') }}
 
                     <div class="col-md-10">
-                        {{ html()->text('height')
-                            ->class('form-control')
-                            ->placeholder(__('validation.attributes.backend.catalog.products.height'))
-                            ->required() }}
+                        {{ Form::text('height', null, [
+                            'class' => 'form-control',
+                            'maxlength' => 191,
+                            'placeholder' => __('validation.attributes.backend.catalog.products.height'),
+                            'required']) }}
                     </div><!--col-->
                 </div><!--form-group-->
 
@@ -83,10 +89,10 @@
                         ->for('membership') }}
 
                     <div class="col-md-10">
-                        {{ html()->text('membership')
-                            ->class('form-control')
-                            ->placeholder(__('validation.attributes.backend.catalog.products.membership'))
-                            ->required() }}
+                        {{ Form::text('membership', null, [
+                            'class' => 'form-control',
+                            'maxlength' => 191,
+                            'placeholder' => __('validation.attributes.backend.catalog.products.membership')]) }}
                     </div><!--col-->
                 </div><!--form-group-->
 
@@ -96,7 +102,7 @@
                         ->for('status') }}
 
                     <div class="col-md-10">
-                        {{ html()->checkbox('status', true, '1') }}
+                        {{ Form::checkbox('status', null) }}
                     </div><!--col-->
                 </div><!--form-group-->
 
@@ -106,7 +112,7 @@
                         ->for('sold') }}
 
                     <div class="col-md-10">
-                        {{ html()->checkbox('sold', false, true) }}
+                        {{ Form::checkbox('sold', null) }}
                     </div><!--col-->
                 </div><!--form-group-->
 
@@ -116,7 +122,7 @@
                         ->for('featured') }}
 
                     <div class="col-md-10">
-                        {{ html()->checkbox('featured', false, true) }}
+                        {{ Form::checkbox('featured', null) }}
                     </div><!--col-->
                 </div><!--form-group-->
 
@@ -126,7 +132,7 @@
                         ->for('made_history') }}
 
                     <div class="col-md-10">
-                        {{ html()->checkbox('made_history', false, true) }}
+                        {{ Form::checkbox('made_history', null) }}
                     </div><!--col-->
                 </div><!--form-group-->
             </div><!--col-->
@@ -140,7 +146,9 @@
             </div><!--col-->
 
             <div class="col text-right">
-                {{ form_submit(__('buttons.general.crud.create')) }}
+                @if(isset($model)) {{ form_submit(__('buttons.general.crud.edit')) }}
+                @else {{ form_submit(__('buttons.general.crud.create')) }}
+                @endif
             </div><!--col-->
         </div><!--row-->
     </div><!--card-footer-->

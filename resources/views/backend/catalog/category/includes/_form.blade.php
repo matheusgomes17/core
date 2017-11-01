@@ -9,7 +9,11 @@
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
                     {{ __('labels.backend.catalog.categories.management') }}
-                    <small class="text-muted">{{ __('labels.backend.catalog.categories.create') }}</small>
+                    <small class="text-muted">
+                        @if(isset($model)) {{ __('labels.backend.catalog.categories.edit') }}
+                        @else {{ __('labels.backend.catalog.categories.create') }}
+                        @endif
+                    </small>
                 </h4>
             </div><!--col-->
         </div><!--row-->
@@ -35,11 +39,11 @@
                         ->for('name') }}
 
                     <div class="col-md-10">
-                        {{ html()->text('name')
-                            ->class('form-control')
-                            ->placeholder(__('validation.attributes.backend.catalog.categories.name'))
-                            ->attribute('maxlength', 191)
-                            ->required() }}
+                        {{ Form::text('name',null, [
+                            'class' => 'form-control',
+                            'maxlength' => 191,
+                            'placeholder' => __('validation.attributes.backend.catalog.categories.name'),
+                            'required']) }}
                     </div><!--col-->
                 </div><!--form-group-->
 
@@ -73,7 +77,9 @@
             </div><!--col-->
 
             <div class="col text-right">
-                {{ form_submit(__('buttons.general.crud.create')) }}
+                @if(isset($model)) {{ form_submit(__('buttons.general.crud.edit')) }}
+                @else {{ form_submit(__('buttons.general.crud.create')) }}
+                @endif
             </div><!--col-->
         </div><!--row-->
     </div><!--card-footer-->

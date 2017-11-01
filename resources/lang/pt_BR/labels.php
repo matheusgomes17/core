@@ -100,7 +100,7 @@ return [
                 'management' => 'Gerenciando Categorias',
                 'table'      => [
                     'name'            => 'Nome',
-                    'category_parent' => 'Categoria',
+                    'category'        => 'Categoria',
                     'created_at'      => 'Criado em',
                     'last_updated'    => 'Última atualização',
                     'total'           => 'total de categoria|total de categorias',

@@ -1,6 +1,6 @@
 @extends ('backend.layouts.app')
 
-@section ('title', __('labels.backend.access.users.management') . ' | ' . __('labels.backend.access.users.create'))
+@section ('title', __('labels.backend.catalog.categories.management') . ' | ' . __('labels.backend.catalog.categories.create'))
 
 @section('breadcrumb-links')
     @include('backend.catalog.category.includes.breadcrumb-links')
