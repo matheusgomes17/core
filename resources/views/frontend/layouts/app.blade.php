@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="csrf-token" content="{{ csrf_token() }}" />
-        <meta name="description" content="@yield('meta_description', 'Laravel 5 Boilerplate')" />
-        <meta name="author" content="@yield('meta_author', 'Matheus Gomes')" />
+        <meta name="description" content="@yield('meta_description', 'Criatório Chideroli')" />
+        <meta name="author" content="@yield('meta_author', 'Junior Chideroli')" />
         <meta name="msapplication-TileColor" content="#FFFFFF" />
         <meta name="msapplication-TileImage" content="{{ asset('img/favicon/ms-icon-144x144.png') }}" />
         <meta name="theme-color" content="#FFFFFF" />
@@ -27,7 +27,6 @@
         <title>@yield('title', app_name())</title>
         @yield('meta')
 
-        {{-- See https://laravel.com/docs/5.5/blade#stacks for usage --}}
         @stack('before-styles')
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">

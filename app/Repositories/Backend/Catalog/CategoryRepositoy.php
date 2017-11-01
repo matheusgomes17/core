@@ -4,6 +4,8 @@ namespace MVG\Repositories\Backend\Catalog;
 
 use Illuminate\Support\Facades\DB;
 use MVG\Events\Backend\Catalog\Category\CategoryCreated;
+use MVG\Events\Backend\Catalog\Category\CategoryDeleted;
+use MVG\Events\Backend\Catalog\Category\CategoryUpdated;
 use MVG\Exceptions\GeneralException;
 use MVG\Models\Catalog\Category;
 use MVG\Repositories\BaseEloquentRepository;
@@ -20,6 +22,7 @@ class CategoryRepository extends BaseEloquentRepository
     /**
      * @var array
      */
+    protected $relationships = ['products'];
 
     /**
      * @var string
@@ -73,7 +76,10 @@ class CategoryRepository extends BaseEloquentRepository
         return $options;
     }
 
-
+    /**
+     * @param array $data
+     * @return Category
+     */
     public function create(array $data) : Category
     {
         return DB::transaction(function () use ($data) {
@@ -85,11 +91,6 @@ class CategoryRepository extends BaseEloquentRepository
             ]);
 
             if ($category) {
-                if (request()->hasFile('cover')) {
-//                    $image = new Imageupload(new ImageManager);
-//                    $new_filename = str_random(56);
-//                    $image->upload($data['cover'], $new_filename);
-                }
 
                 event(new CategoryCreated($category));
 
@@ -103,7 +104,6 @@ class CategoryRepository extends BaseEloquentRepository
     /**
      * @param mixed $id
      * @param array $data
-     *
      * @return Category
      */
     public function update($id, array $data) : Category
@@ -112,23 +112,37 @@ class CategoryRepository extends BaseEloquentRepository
 
         return DB::transaction(function () use ($category, $data) {
             if ($category->update([
-                'first_name' => $data['first_name'],
-                'last_name' => $data['last_name'],
-                'email' => $data['email'],
-            ])
-            ) {
-                // Add selected roles
-                $category->syncRoles($data['roles']);
-
-                // See if adding any additional permissions
-                if (isset($data['permissions']) && count($data['permissions'])) {
-                    $category->syncPermissions($data['permissions']);
-                }
+                'name' => $data['name'],
+                'description' => $data['description'],
+                'parent_id' => $data['parent_id'],
+            ])) {
+                event(new CategoryUpdated($category));
 
                 return $category;
             }
 
             throw new GeneralException(__('exceptions.backend.catalog.categories.update_error'));
+        });
+    }
+
+    /**
+     * @param $id
+     * @return Category
+     * @throws GeneralException
+     */
+    public function delete($id) : Category
+    {
+        $category = Category::findOrFail($id);
+
+        return DB::transaction(function () use ($category) {
+            if ($category->delete()) {
+
+                event(new CategoryDeleted($category));
+
+                return $category;
+            }
+
+            throw new GeneralException(__('exceptions.backend.catalog.categories.delete_error'));
         });
     }
 }

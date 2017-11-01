@@ -1,5 +1,5 @@
 <footer class="app-footer">
-    <strong>Copyright &copy; {{ date('Y') }} <a href="http://laravel-boilerplate.com">{{ __('strings.backend.general.boilerplate_link') }}</a></strong> {{ __('strings.backend.general.all_rights_reserved') }}
+    <strong>Copyright &copy; {{ date('Y') }} <a href="{{ route('admin.dashboard') }}">{{ app_name() }}</a></strong> {{ __('strings.backend.general.all_rights_reserved') }}
 
-    <span class="float-right">Powered by <a href="http://coreui.io">CoreUI</a></span>
+    <span class="float-right">Criado por <a href="http://mvgtecnologia.com">MVG Tecnologia</a></span>
 </footer>

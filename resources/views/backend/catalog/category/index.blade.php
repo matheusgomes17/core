@@ -27,8 +27,8 @@
                     <thead>
                     <tr>
                         <th>{{ __('labels.backend.catalog.categories.table.name') }}</th>
+                        <th>{{ __('labels.backend.catalog.categories.table.category') }}</th>
                         <th>{{ __('labels.backend.catalog.categories.table.created_at') }}</th>
-                        <th>{{ __('labels.backend.catalog.categories.table.category_parent') }}</th>
                         <th>{{ __('labels.backend.catalog.categories.table.last_updated') }}</th>
                         <th>{{ __('labels.general.actions') }}</th>
                     </tr>
@@ -37,9 +37,9 @@
                         @foreach ($categories as $category)
                             <tr>
                                 <td>{{ $category->name }}</td>
-                                <td>{{ $category->created_at->diffForHumans() }}</td>
-                                <td>{{ $category->email }}</td>
-                                <td>{{ $category->updated_at->diffForHumans() }}</td>
+                                <td>{{ $category->category }}</td>
+                                <td>{{ $category->created_at }}</td>
+                                <td>{{ $category->updated_at }}</td>
                                 <td>{!! $category->action_buttons !!}</td>
                             </tr>
                         @endforeach

@@ -22,7 +22,8 @@
                         @foreach(getMenuCategories() as $menu)
                         <ul class="sidebar-menu">
                             @foreach($menu->children as $subMenu)
-                            <li><a href="{{ route('frontend.category', $subMenu->slug) }}" title="{{ $subMenu->name }}">{{ $subMenu->name }}</a> <span class="count">({{ $subMenu->products->count() }})</span></li>
+                            <li><a href="{{ route('frontend.category', $subMenu->slug) }}"title="{{ $subMenu->name }}">
+                                    {{ $subMenu->name }}</a> <span class="count">({{ $subMenu->products->count() }})</span></li>
                             @endforeach
                         </ul>
                         @endforeach

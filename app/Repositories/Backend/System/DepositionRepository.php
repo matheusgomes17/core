@@ -3,9 +3,11 @@
 namespace MVG\Repositories\Backend\System;
 
 use MVG\Events\Backend\System\Deposition\DepositionCreated;
+use MVG\Events\Backend\System\Deposition\DepositionPermanentlyDeleted;
 use MVG\Events\Backend\System\Deposition\DepositionUpdated;
 use MVG\Events\Backend\System\Deposition\DepositionDeleted;
 use MVG\Models\System\Deposition;
+use MVG\Repositories\Backend\ImageRepository;
 use MVG\Repositories\BaseEloquentRepository;
 use MVG\Repositories\Traits\CacheResults;
 use MVG\Repositories\Traits\ImageManager;
@@ -18,8 +20,7 @@ use Illuminate\Support\Facades\DB;
  */
 class DepositionRepository extends BaseEloquentRepository
 {
-    use CacheResults,
-        ImageManager;
+    use CacheResults;
 
     /**
      * @var array
@@ -79,17 +80,12 @@ class DepositionRepository extends BaseEloquentRepository
                 'link' => $data['link']
             ]);
 
-
             if ($deposition) {
                 if (request()->hasFile('cover')) {
+
+                    $image = new ImageRepository();
                     $file = request()->file('cover');
-
-                    if ($this->isAlreadyUploaded($file)) {
-                        abort(400, 'Esse arquivo já foi enviado antes.');
-                    }
-
-                    $path = $file->store('uploads/depositions');
-                    $deposition->cover = $path;
+                    $deposition->cover = $image->saveImage($file, '$depositions', 120);
                     $deposition->save();
                 }
 
@@ -110,37 +106,29 @@ class DepositionRepository extends BaseEloquentRepository
      */
     public function update($id, array $data) : Deposition
     {
-        $product = Deposition::findOrFail($id);
+        $deposition = Deposition::findOrFail($id);
 
-        return DB::transaction(function () use ($product, $data) {
+        return DB::transaction(function () use ($deposition, $data) {
 
-            if ($product->update([
-                'category_id' => $data['category_id'],
+            if ($deposition->update([
+                'user_id' => auth()->user()->id,
                 'name' => $data['name'],
-                'height' => $data['height'],
-                'membership' => $data['membership'],
-                'description' => $data['description'],
-                'sold' => isset($data['sold']) ? true : false,
-                'status' => isset($data['status']) ? 1 : 0,
+                'city' => $data['city'],
+                'state' => $data['state'],
+                'link' => $data['link']
             ])) {
+                if (request()->hasFile('cover')) {
 
-                if (isset($data['cover'])) {
-                    foreach ($product->getImageType() as $value) {
-                        unlink($product->getImagePath($value));
-                    }
-
-                    $product->image->delete();
-                    $cover = new AttacherModel();
-                    $cover->setupFile($data['cover']);
-                    $cover->subject_id = $product->id;
-                    $cover->subject_type = $this->model;
-                    $cover->file_name = str_random(56) . '.' . $cover->file_extension;
-                    $cover->save();
+                    $image = new ImageRepository();
+                    $file = request()->file('cover');
+                    unlink(public_path($deposition->cover));
+                    $deposition->cover = $image->saveImage($file, '$depositions', 120);
+                    $deposition->save();
                 }
 
-                event(new DepositionUpdated($product));
+                event(new DepositionUpdated($deposition));
 
-                return $product;
+                return $deposition;
             }
 
             throw new GeneralException(__('exceptions.backend.system.depositions.update_error'));
@@ -156,14 +144,14 @@ class DepositionRepository extends BaseEloquentRepository
      */
     public function delete($id)
     {
-        $product = Deposition::findOrFail($id);
+        $deposition = Deposition::findOrFail($id);
 
-        return DB::transaction(function () use ($product) {
-            if ($product->delete()) {
+        return DB::transaction(function () use ($deposition) {
+            if ($deposition->delete()) {
 
-                event(new ProductDeleted($product));
+                event(new DepositionDeleted($deposition));
 
-                return $product;
+                return $deposition;
             }
 
             throw new GeneralException(trans('exceptions.backend.system.depositions.delete_error'));
@@ -178,18 +166,18 @@ class DepositionRepository extends BaseEloquentRepository
      */
     public function forceDelete($id) : Deposition
     {
-        $product = Deposition::findOrFail($id);
+        $deposition = Deposition::findOrFail($id);
 
-        if (is_null($product->deleted_at)) {
+        if (is_null($deposition->deleted_at)) {
             throw new GeneralException(__('exceptions.backend.system.depositions.delete_first'));
         }
 
-        return DB::transaction(function () use ($product) {
-            if ($product->forceDelete()) {
+        return DB::transaction(function () use ($deposition) {
+            if ($deposition->forceDelete()) {
 
-                event(new ProductPermanentlyDeleted($product));
+                event(new DepositionPermanentlyDeleted($deposition));
 
-                return $product;
+                return $deposition;
             }
 
             throw new GeneralException(__('exceptions.backend.system.depositions.delete_error'));

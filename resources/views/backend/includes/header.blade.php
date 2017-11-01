@@ -55,6 +55,4 @@
             </div>
         </li>
     </ul>
-
-    <button class="navbar-toggler aside-menu-toggler" type="button">☰</button>
 </header>

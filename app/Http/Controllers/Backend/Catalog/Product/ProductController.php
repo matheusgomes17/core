@@ -82,9 +82,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product, ManageProductRequest $request)
     {
-        return view('backend.catalog.edit')
+        return view('backend.catalog.product.edit')
             ->withProduct($product)
-            ->withProducts($this->productRepository->getCategoryOptions());
+            ->withCategories($this->productRepository->getCategoryOptions());
     }
 
     /**

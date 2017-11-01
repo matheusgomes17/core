@@ -9,38 +9,38 @@
                 <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                 <li data-target="#carousel-example-generic" data-slide-to="2"></li>
             </ol>
-
+            <h1 class="hidden">Conheça o Criatório Chideroli</h1>
             <div class="carousel-inner" role="listbox">
-                <div class="item active">
+                <article class="item active">
                     <img src="img/slider.jpg" width="1648" height="600" alt="">
 
                     <div class="carousel-caption">
-                        <h2><b>INDIO GIGANTE</b> CHIDEROLI</h2>
+                        <h1><b>INDIO GIGANTE</b> CHIDEROLI</h1>
 
-                        <h3>UM CRIATÓRIO DE <span>MONSTROS!</span></h3>
+                        <p>UM CRIATÓRIO DE <span>MONSTROS!</span></p>
                         <a href="#">Veja mais</a>
                     </div>
-                </div>
-                <div class="item">
+                </article>
+                <article class="item">
                     <img src="img/slider2.jpg" width="1648" height="600" alt="">
 
                     <div class="carousel-caption">
-                        <h2><b>INDIO GIGANTE</b> CHIDEROLI</h2>
+                        <h1><b>INDIO GIGANTE</b> CHIDEROLI</h1>
 
-                        <h3>UM CRIATÓRIO DE <span>MONSTROS!</span></h3>
+                        <p>UM CRIATÓRIO DE <span>MONSTROS!</span></p>
                         <a href="#">Veja mais</a>
                     </div>
-                </div>
-                <div class="item ">
+                </article>
+                <article class="item ">
                     <img src="img/slider3.jpg" width="1648" height="600" alt="">
 
                     <div class="carousel-caption">
-                        <h2><b>INDIO GIGANTE</b> CHIDEROLI</h2>
+                        <h1><b>INDIO GIGANTE</b> CHIDEROLI</h1>
 
-                        <h3>UM CRIATÓRIO DE <span>MONSTROS!</span></h3>
+                        <p>UM CRIATÓRIO DE <span>MONSTROS!</span></p>
                         <a href="#">Veja mais</a>
                     </div>
-                </div>
+                </article>
             </div>
 
             <!-- Controls -->
