@@ -25,7 +25,7 @@
 		                            <div class="tab-content">
 		                                <div class="tab-pane active">
 		                                    <div class="large-img">
-		                                        <img src="{{ asset($product->cover) }}" alt="" />
+		                                        <img src="{{ asset($product->getOriginalImage()) }}" alt="" />
 		                                    </div>
 		                                </div>
 		                            </div>

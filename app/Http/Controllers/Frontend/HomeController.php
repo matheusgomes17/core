@@ -45,7 +45,6 @@ class HomeController extends Controller
     public function index()
     {
         $categoryRepository = $this->categoryRepository;
-        dd($categoryRepository->getCategoryRandomProduct(6, 1));
         $products = collect([
             $categoryRepository->getCategoryRandomProduct(2, 1),
             $categoryRepository->getCategoryRandomProduct(3, 1),

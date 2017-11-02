@@ -76,4 +76,13 @@ class Product extends Model
             ]
         ];
     }
+
+
+    public function getOriginalImage()
+    {
+        $url = explode('.', $this->cover);
+        $newName = $url[0] . '_original.' . $url[1];
+
+        return $newName;
+    }
 }

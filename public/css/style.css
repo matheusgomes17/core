@@ -662,11 +662,12 @@ a.carousel-control.right > span{
 .product-item{
     position: relative;
     margin-top: 30px;
-    transition: all 0.5s
+    transition: all 0.5s;
+    height: 400px;
 }
 .product-item img{
     width: 100%;
-    height: auto;
+    height: 400px;
 }
 
 .product-hover{
@@ -742,7 +743,7 @@ a.carousel-control.right > span{
 .product-item:hover .product-title i{
     color: #FFF;
 }
-.product-title h3{
+.product-title h1{
     margin: 0;
     padding: 0;
     text-align: left;
@@ -885,12 +886,12 @@ a.carousel-control.right > span{
     margin: 0;
     padding: 0;
 }
-.offer-section h2{
+.offer-section p{
     font-size: 38px;
     font-weight: 300;
     color: #fff;
     font-family: 'Open Sans';
-    margin: 0;
+    margin: 20px 0 0 0;
     padding: 0;
 }
 
