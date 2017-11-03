@@ -25,6 +25,9 @@
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/favicon/favicon-16x16.png') }}" />
         <link rel="manifest" href="{{ asset('img/favicon/manifest.json') }}" />
         <title>@yield('title', app_name())</title>
+
+        {!! SEO::generate() !!}
+
         @yield('meta')
 
         @stack('before-styles')
@@ -35,13 +38,13 @@
         @stack('after-styles')
     </head>
     <body>
-        <div id="preloader">
+        <!--<div id="preloader">
             <div class="preloader-area">
                 <div class="preloader-box">
                     <div class="preloader"></div>
                 </div>
             </div>
-        </div>
+        </div>-->
         @include('includes.partials.logged-in-as')
 
         @include('frontend.includes.header')
@@ -53,7 +56,6 @@
 
         <!-- Scripts -->
         @stack('before-scripts')
-        @stack('after-scripts')
 
         @include('frontend.includes.footer')
         @include('includes.partials.ga')
@@ -64,5 +66,7 @@
         <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
         <script src="{{ asset('js/wow.min.js') }}"></script>
         <script src="{{ asset('js/custom.js') }}"></script>
+
+        @stack('after-scripts')
     </body>
 </html>

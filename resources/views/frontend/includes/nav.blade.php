@@ -30,7 +30,7 @@
                 @endif
                 <ul class="nav navbar-nav navbar-right cart-menu">
                     <li>
-                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Galeria de Imagens">
+                        <a href="{{ route('frontend.gallery') }}" data-toggle="tooltip" data-placement="bottom" title="Galeria de Imagens">
                             <i class="fa fa-camera-retro fa-lg" aria-hidden="true"></i>
                         </a>
                     </li>

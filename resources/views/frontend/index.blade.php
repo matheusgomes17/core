@@ -81,7 +81,6 @@
                         </div>
                     </div>
                 </header>
-
                 @foreach(getMenuCategories() as $menuCategories)
                     <div class="row">
                         <div class="col-md-12">
@@ -182,8 +181,9 @@
                 <div id="feedback" class="carousel slide feedback" data-ride="feedback">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
+                        <?php $var1 = 0 ?>
                         @foreach ($depositions as $deposition)
-                            <article class="item active">
+                            <article class="item @if ($var1 == 0)active @endif">
                                 <div class="carousel-caption">
                                     <p>
                                         <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $deposition->link }}" frameborder="0" allowfullscreen></iframe>
@@ -192,14 +192,17 @@
                                     <span>{{ $deposition->cityAndState }}</span>
                                 </div>
                             </article>
+                            <?php $var1++ ?>
                         @endforeach
                     </div>
                     <footer>
                         <ol class="carousel-indicators review-controlar">
+                            <?php $var2 = 0 ?>
                             @foreach ($depositions as $deposition)
-                            <li data-target="#feedback" data-slide-to="{{ $deposition->id-1 }}" class="active">
-                                <img src="{{ asset($deposition->cover) }}" width="320" height="439" alt="{{ $deposition->name }}">
-                            </li>
+                                <li data-target="#feedback" data-slide-to="{{ $var2 }}" class="@if ($var2 == 0) active @endif">
+                                    <img src="{{ asset($deposition->cover) }}" width="320" height="439" alt="{{ $deposition->name }}">
+                                </li>
+                                <?php $var2++ ?>
                             @endforeach
                         </ol>
                     </footer>

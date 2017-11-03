@@ -85,7 +85,7 @@ class DepositionRepository extends BaseEloquentRepository
 
                     $image = new ImageRepository();
                     $file = request()->file('cover');
-                    $deposition->cover = $image->saveImage($file, '$depositions', 120);
+                    $deposition->cover = $image->saveImage($file, 'depositions', 120);
                     $deposition->save();
                 }
 
@@ -122,7 +122,7 @@ class DepositionRepository extends BaseEloquentRepository
                     $image = new ImageRepository();
                     $file = request()->file('cover');
                     unlink(public_path($deposition->cover));
-                    $deposition->cover = $image->saveImage($file, '$depositions', 120);
+                    $deposition->cover = $image->saveImage($file, 'depositions', 120);
                     $deposition->save();
                 }
 

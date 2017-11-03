@@ -32,8 +32,7 @@ class HomeController extends Controller
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
         DepositionRepository $depositionRepository
-    )
-    {
+    ){
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
         $this->depositionRepository = $depositionRepository;
@@ -45,6 +44,7 @@ class HomeController extends Controller
     public function index()
     {
         $categoryRepository = $this->categoryRepository;
+
         $products = collect([
             $categoryRepository->getCategoryRandomProduct(2, 1),
             $categoryRepository->getCategoryRandomProduct(3, 1),
@@ -53,6 +53,7 @@ class HomeController extends Controller
             $categoryRepository->getCategoryRandomProduct(6, 1),
             $categoryRepository->getCategoryRandomProduct(7, 1)
         ]);
+
         return view('frontend.index')
             ->withReprodutores($categoryRepository->getCategoryRandomProduct(2, 1))
             ->withMatrizes($categoryRepository->getCategoryRandomProduct(3, 1))
@@ -67,12 +68,20 @@ class HomeController extends Controller
     }
 
     /**
-     * @return \Illuminate\View\View
+     * @param SearchRequest $request
+     * @return mixed
      */
     public function search(SearchRequest $request)
     {
         return view('frontend.search')
             ->withKeyword($request->input('pesquisa'))
+            ->withProducts($this->productRepository->getSearchPaginated(2));
+    }
+
+
+    public function gallery()
+    {
+        return view('frontend.gallery')
             ->withProducts($this->productRepository->getSearchPaginated(2));
     }
 }

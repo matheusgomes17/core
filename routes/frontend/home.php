@@ -7,6 +7,7 @@
 Route::get('/', 'HomeController@index')->name('index');
 Route::post('contato/enviar', 'ContactController@send')->name('contact.send');
 Route::post('pesquisa', 'HomeController@search')->name('search');
+Route::get('/galeria', 'HomeController@gallery')->name('gallery');
 
 /*
  * These frontend controllers require the user to be logged in

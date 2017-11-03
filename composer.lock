@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9e70205f3afd1f3b06c1177e7c78d78",
+    "content-hash": "9a0324f8c64d72e61058824765904f93",
     "packages": [
         {
             "name": "appstract/laravel-blade-directives",
@@ -288,22 +288,22 @@
         },
         {
             "name": "artesaos/seotools",
-            "version": "0.10.0",
+            "version": "v0.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/artesaos/seotools.git",
-                "reference": "6cdd1787aa36ac0c1a63155fb84a27934f426c93"
+                "reference": "c6d22055be1f730cfaa589b9e71ddd92c397606e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/artesaos/seotools/zipball/6cdd1787aa36ac0c1a63155fb84a27934f426c93",
-                "reference": "6cdd1787aa36ac0c1a63155fb84a27934f426c93",
+                "url": "https://api.github.com/repos/artesaos/seotools/zipball/c6d22055be1f730cfaa589b9e71ddd92c397606e",
+                "reference": "c6d22055be1f730cfaa589b9e71ddd92c397606e",
                 "shasum": ""
             },
             "require": {
                 "illuminate/config": "~5",
                 "illuminate/support": "~5",
-                "php": ">=5.4.0"
+                "php": ">=7.0"
             },
             "require-dev": {
                 "mockery/mockery": "^0.9.4",
@@ -312,6 +312,19 @@
                 "phpunit/phpunit": "^4.0|^5.0"
             },
             "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Artesaos\\SEOTools\\Providers\\SEOToolsServiceProvider"
+                    ],
+                    "aliases": {
+                        "SEOMeta": "Artesaos\\SEOTools\\Facades\\SEOMeta",
+                        "OpenGraph": "Artesaos\\SEOTools\\Facades\\OpenGraph",
+                        "Twitter": "Artesaos\\SEOTools\\Facades\\TwitterCard",
+                        "SEO": "Artesaos\\SEOTools\\Facades\\SEOTools"
+                    }
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Artesaos\\SEOTools\\": "src/SEOTools/"
@@ -337,7 +350,7 @@
                 "seotools",
                 "webmaster"
             ],
-            "time": "2016-10-27T03:03:45+00:00"
+            "time": "2017-09-25T15:00:31+00:00"
         },
         {
             "name": "cocur/slugify",

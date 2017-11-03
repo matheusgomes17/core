@@ -1482,6 +1482,10 @@ div.footer p a{
     .navbar-default .navbar-collapse, .navbar-default .navbar-form{
         overflow: hidden;
     }
+    ul.navbar-nav.cart-menu li{
+        margin-right: 10px;
+        display: inline-block;
+    }
     ul.navbar-nav.cart-menu li a{
         padding: 15px 0;
     }
@@ -1833,6 +1837,40 @@ h2.breadcrumb-title {
 }
 .pro-shared {
     margin-top: 31px;
+}
+
+
+.pro-shared .social-media{
+    display: block;
+    margin-top: 10px;
+}
+.pro-shared .social-media ul{
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+.pro-shared .social-media ul li{
+    list-style: none;
+    display: inline-block;
+    margin-right: 10px;
+}
+.pro-shared .social-media ul li a{
+    color: #fff;
+}
+.pro-shared .social-media ul li a i{
+    height: 35px;
+    width: 35px;
+    font-size: 20px;
+    border: 1px solid #fff;
+    text-align: center;
+    padding: 7px 0;
+}
+.pro-shared .social-media ul li a:hover i{
+    background: #3C5086;
+    border: 1px solid #3C5086;
+}
+.pro-shared .social-media .fb {
+    background-color: #4862A3;
 }
 .single-cart-color {
     padding: 28px 0 33px;
