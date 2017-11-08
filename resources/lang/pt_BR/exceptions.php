@@ -16,14 +16,14 @@ return [
     'backend' => [
         'access' => [
             'roles' => [
-                'already_exists'    => 'Esse papel já existe. Por favor, escolha um nome diferente.',
-                'cant_delete_admin' => 'Você não pode excluir o papel de Administrador.',
-                'create_error'      => 'Houve um problema ao criar esse papel. Por favor, tente novamente.',
-                'delete_error'      => 'Houve um problema ao excluir esse papel. Por favor, tente novamente.',
-                'has_users'         => 'Você não pode excluir um papel com usuários associados..',
-                'needs_permission'  => 'Você deve selecionar pelo menos uma permissão para este papel.',
-                'not_found'         => 'Este papel não existe.',
-                'update_error'      => 'Houve um problema ao atualizar esse papel. Por favor, tente novamente.',
+                'already_exists'          => 'Esse papel já existe. Por favor, escolha um nome diferente.',
+                'cant_delete_admin'       => 'Você não pode excluir o papel de Administrador.',
+                'create_error'            => 'Houve um problema ao criar esse papel. Por favor, tente novamente.',
+                'delete_error'            => 'Houve um problema ao excluir esse papel. Por favor, tente novamente.',
+                'has_users'               => 'Você não pode excluir um papel com usuários associados..',
+                'needs_permission'        => 'Você deve selecionar pelo menos uma permissão para este papel.',
+                'not_found'               => 'Este papel não existe.',
+                'update_error'            => 'Houve um problema ao atualizar esse papel. Por favor, tente novamente.',
             ],
             'users' => [
                 'already_confirmed'       => 'Este usuário já está confirmado.',
@@ -61,6 +61,7 @@ return [
                 'does_not_exist'    => 'Esta categoria não existe.',
             ],
             'products' => [
+                'cant_restore'      => 'Este produto não está excluído para que ele possa ser restaurado.',
                 'create_error'      => 'Houve um problema ao criar esse produto. Por favor, tente novamente.',
                 'update_error'      => 'Houve um problema ao atualizar este produto. Por favor, tente novamente.',
                 'delete_error'      => 'Houve um problema ao excluir este produto. Por favor, tente novamente.',
@@ -72,6 +73,20 @@ return [
         ],
         'system' => [
             'depositions' => [
+                'create_error'      => 'Houve um problema ao criar essa imagem. Por favor, tente novamente.',
+                'update_error'      => 'Houve um problema ao atualizar esta imagem. Por favor, tente novamente.',
+                'delete_error'      => 'Houve um problema ao excluir esta imagem. Por favor, tente novamente.',
+                'delete_first'      => 'Esta imagem deve ser excluída antes para poder ser excluído permanentemente.',
+                'belongs_user'      => 'Este depoimento não pertence ao seu usuário!',
+            ],
+            'images' => [
+                'create_error'      => 'Houve um problema ao criar esse depoimento. Por favor, tente novamente.',
+                'update_error'      => 'Houve um problema ao atualizar este depoimento. Por favor, tente novamente.',
+                'delete_error'      => 'Houve um problema ao excluir este depoimento. Por favor, tente novamente.',
+                'delete_first'      => 'Este depoimento deve ser excluído antes para poder ser excluído permanentemente.',
+                'belongs_user'      => 'Este depoimento não pertence ao seu usuário!',
+            ],
+            'videos' => [
                 'create_error'      => 'Houve um problema ao criar esse depoimento. Por favor, tente novamente.',
                 'update_error'      => 'Houve um problema ao atualizar este depoimento. Por favor, tente novamente.',
                 'delete_error'      => 'Houve um problema ao excluir este depoimento. Por favor, tente novamente.',
@@ -97,8 +112,8 @@ return [
             'deactivated' => 'Sua conta foi desativada.',
             'email_taken' => 'Esse endereço de e-mail já foi utilizado.',
             'password'    => [
-                'change_mismatch' => 'Essa não é a sua senha antiga.',
-                'reset_problem'   => 'Ocorreu um problema ao restaurar sua senha. Reenvie o email de redefinição de senha.',
+                'change_mismatch'   => 'Essa não é a sua senha antiga.',
+                'reset_problem'     => 'Ocorreu um problema ao restaurar sua senha. Reenvie o email de redefinição de senha.',
             ],
 
             'registration_disabled' => 'Atualmente, o registro está fechado.',

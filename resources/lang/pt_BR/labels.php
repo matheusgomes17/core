@@ -58,17 +58,19 @@ return [
                 'no_permissions'      => 'Sem permissões',
                 'no_roles'            => 'Sem papéis para definir.',
                 'permissions'         => 'Permissões',
-                'table'               => [
+                'table' => [
                     'confirmed'      => 'Confirmado',
                     'created'        => 'Criado',
                     'email'          => 'E-mail',
                     'id'             => 'ID',
                     'last_updated'   => 'Última atualização',
                     'name'           => 'Nome',
+                    'first_name'     => 'Primeiro Nome',
+                    'last_name'      => 'Último Nome',
                     'no_deactivated' => 'Nenhum usuário desativado.',
                     'no_deleted'     => 'Nenhum usuário excluído',
                     'roles'          => 'Papéis',
-                    'social' => 'Social',
+                    'social'         => 'Social',
                     'total'          => 'total de usuário|total de usuários',
                 ],
                 'tabs' => [
@@ -85,6 +87,8 @@ return [
                             'email'        => 'E-mail',
                             'last_updated' => 'Última atualização',
                             'name'         => 'Nome',
+                            'first_name'   => 'Primeiro Nome',
+                            'last_name'    => 'Último Nome',
                             'status'       => 'Estado',
                         ],
                     ],
@@ -98,7 +102,7 @@ return [
                 'create'     => 'Criar Categoria',
                 'edit'       => 'Editar Categoria',
                 'management' => 'Gerenciando Categorias',
-                'table'      => [
+                'table' => [
                     'name'            => 'Nome',
                     'category'        => 'Categoria',
                     'created_at'      => 'Criado em',
@@ -114,7 +118,8 @@ return [
                 'edit'                => 'Editar Produto',
                 'management'          => 'Gerenciando Produtos',
                 'no_categories'       => 'Não existem categorias cadastradas',
-                'table'               => [
+                'table' => [
+                    'photo'          => 'Imagem',
                     'name'           => 'Nome',
                     'category'       => 'Categoria',
                     'created'        => 'Criado',
@@ -136,7 +141,7 @@ return [
                 'deleted'             => 'Excluir Depoimentos',
                 'edit'                => 'Editar Depoimento',
                 'management'          => 'Gerenciando Depoimentos',
-                'table'               => [
+                'table' => [
                     'cover'          => 'Foto',
                     'name'           => 'Nome',
                     'created'        => 'Criado',
@@ -145,6 +150,33 @@ return [
                     'total'          => 'total de depoimento|total de depoimentos',
                 ],
                 'view' => 'Visualizar Depoimento',
+            ],
+            'galleries' => [
+                'management' => 'Gerenciando Galerias',
+                'active'     => 'Galerias Ativas',
+                'create'     => 'Criar Galeria',
+
+                'table' => [
+                    'id'             => 'ID.',
+                    'created'        => 'Criado',
+                    'last_updated'   => 'Última atualização',
+                    'total'          => 'total de imagem|total de imagens',
+                ],
+                
+                'image' => [
+                    'create'      => 'Criar Imagem',
+                    'deactivated' => 'Desativar Imagens',
+                    'deleted'     => 'Excluir Imagens',
+                    'edit'        => 'Editar Imagem',
+                    'view'        => 'Visualizar Imagem',
+                ],
+                'video' => [
+                    'create'      => 'Criar Vídeo',
+                    'deactivated' => 'Desativar Vídeos',
+                    'deleted'     => 'Excluir Vídeos',
+                    'edit'        => 'Editar Vídeo',
+                    'view'        => 'Visualizar Vídeo',
+                ]
             ],
         ],
     ],
@@ -159,8 +191,8 @@ return [
         ],
 
         'contact' => [
-            'box_title' => 'Contact Us',
-            'button' => 'Send Information',
+            'box_title' => 'Contate-Nos',
+            'button' => 'Enviar informações',
         ],
 
         'passwords' => [

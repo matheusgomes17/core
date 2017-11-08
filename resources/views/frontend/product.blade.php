@@ -4,7 +4,7 @@
 	<div class="breadcrumbs-area breadcrumb-bg ptb-100">
 	    <div class="container">
 	        <div class="breadcrumbs text-center">
-                <h2 class="breadcrumb-title">{{ $product->name }}</h2>
+                <p class="breadcrumb-title">{{ $product->name }}</p>
                 <ul>
                     <li><a class="active" href="{{ route('frontend.index') }}">Início</a></li>
                     <li><a class="active" href="{{ route('frontend.category', $product->categories->slug) }}">{{ $product->categories->name }}</a></li>
@@ -78,7 +78,7 @@
             <header class="row">
                 <div class="col-md-12">
                     <div class="titie-section">
-                        <h1>ANIMAIS RELACIONADOS</h1>
+                        <h1>Animais Relacionados</h1>
                     </div>
                 </div>
             </header>

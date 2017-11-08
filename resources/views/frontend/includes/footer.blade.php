@@ -1,18 +1,18 @@
-<footer>
-    <div id="contact_footer" class="contact-section" itemscope itemtype="https://schema.org/Organization">
+<footer id="contact_footer">
+    <div class="contact-section" itemscope itemtype="https://schema.org/Organization">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="titie-section wow fadeInDown animated ">
-                        <h1>ENTRE EM CONTATO</h1>
+                        <h1>Entre em contato</h1>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 wow fadeInLeft animated">
                     <div class="left-content">
-                        <h1><span>C</span>riatório <span>C</span>hideroli</h1>
-                        <h3>Venhar conhecer nosso criatório!</h3>
+                        <p class="contact_title"><span>C</span>riatório <span>C</span>hideroli</p>
+                        <p class="contact_subtitle">Venhar conhecer nosso criatório!</p>
                         <p itemprop="description">Temos os melhore galos e galinhas de porte Indio Gigante em todo estado de São Paulo</p>
                         <duv class="contact-info">
                             <address itemprop="address" itemscope itemtype="https://schema.org/PostalAddress" style="margin: 0; padding: 0;">
@@ -76,7 +76,6 @@
             </div>
         </div>
     </div>
-
     <div class="footer">
         <div class="container">
             <div class="row">

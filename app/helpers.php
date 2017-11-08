@@ -1,6 +1,17 @@
 <?php
 
 use MVG\Helpers\General\HtmlHelper;
+use Jenssegers\Date\Date;
+
+if (! function_exists('carbon')) {
+
+    function carbon()
+    {
+        Date::setLocale('pt_BR');
+
+        echo Date::now()->format('l j F Y H:i');
+    }
+}
 
 /*
  * Global helpers file with misc functions.

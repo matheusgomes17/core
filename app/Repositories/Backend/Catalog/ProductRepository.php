@@ -2,22 +2,23 @@
 
 namespace MVG\Repositories\Backend\Catalog;
 
+use Kalnoy\Nestedset\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
-use MVG\Events\Backend\Catalog\Product\ProductDeactivated;
-use MVG\Events\Backend\Catalog\Product\ProductReactivated;
 use MVG\Models\Catalog\Product;
 use MVG\Models\Catalog\Category;
+use MVG\Events\Backend\Catalog\Product\ProductDeactivated;
+use MVG\Events\Backend\Catalog\Product\ProductReactivated;
 use MVG\Events\Backend\Catalog\Product\ProductCreated;
 use MVG\Events\Backend\Catalog\Product\ProductUpdated;
 use MVG\Events\Backend\Catalog\Product\ProductDeleted;
+use MVG\Events\Backend\Catalog\Product\ProductRestored;
 use MVG\Events\Backend\Catalog\Product\ProductPermanentlyDeleted;
 use MVG\Repositories\Backend\ImageRepository;
 use MVG\Repositories\BaseEloquentRepository;
 use MVG\Repositories\Traits\CacheResults;
 use MVG\Exceptions\GeneralException;
-use Kalnoy\Nestedset\Collection;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\DB;
 
 /**
  * Class ProductRepository.
@@ -84,6 +85,21 @@ class ProductRepository extends BaseEloquentRepository
     {
         return $this->model
             ->with($this->requiredRelationships)
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
+    /**
+     * @param int    $paged
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function getActivePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            ->active()
             ->orderBy($orderBy, $sort)
             ->paginate($paged);
     }
@@ -191,7 +207,12 @@ class ProductRepository extends BaseEloquentRepository
 
                     $image = new ImageRepository();
                     $file = request()->file('cover');
+
+                    $original_image = explode('.', $product->cover);
+                    $original_filename = $original_image[0] . '_original.' . $original_image[1];
+                    unlink(public_path($original_filename));
                     unlink(public_path($product->cover));
+
                     $product->cover = $image->saveImage($file, 'products', 250);
                     $product->save();
                 }
@@ -225,21 +246,20 @@ class ProductRepository extends BaseEloquentRepository
         });
     }
 
-    /**
-     * @param $id
-     * @return Product
-     * @throws GeneralException
-     */
-    public function forceDelete($id) : Product
-    {
-        $product = Product::findOrFail($id);
 
+    public function forceDelete(Product $product) : Product
+    {
         if (is_null($product->deleted_at)) {
             throw new GeneralException(__('exceptions.backend.catalog.products.delete_first'));
         }
 
         return DB::transaction(function () use ($product) {
             if ($product->forceDelete()) {
+                    
+                $original_image = explode('.', $product->cover);
+                $original_filename = $original_image[0] . '_original.' . $original_image[1];
+                unlink(public_path($original_filename));
+                unlink(public_path($product->cover));
 
                 event(new ProductPermanentlyDeleted($product));
 

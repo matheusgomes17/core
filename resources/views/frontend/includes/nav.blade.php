@@ -1,4 +1,4 @@
-<header class="header-section">
+<div class="header-section">
     <div class="navbar navbar-default">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -48,7 +48,7 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->
     </div>
-</header>
+</div>
 
 <div class="search-section">
     <div class="container">

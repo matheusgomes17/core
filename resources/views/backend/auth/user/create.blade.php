@@ -109,14 +109,14 @@
                     @endif
 
                     <div class="form-group row">
-                        {{ html()->label('Abilities')->class('col-md-2 form-control-label') }}
+                        {{ html()->label('Habilidades')->class('col-md-2 form-control-label') }}
 
                         <div class="col-md-10">
                             <table class="table table-responsive">
                                 <thead>
                                     <tr>
-                                        <th>Roles</th>
-                                        <th>Permissions</th>
+                                        <th>Papéis</th>
+                                        <th>Permissões</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -137,10 +137,10 @@
                                                                         <i class="fa fa-dot-circle-o"></i> {{ ucwords($permission->name) }}
                                                                     @endforeach
                                                                 @else
-                                                                    None
+                                                                    Nenhum
                                                                 @endif
                                                             @else
-                                                                All Permissions
+                                                                Todas as permissões
                                                             @endif
                                                         </div>
                                                     </div><!--card-->

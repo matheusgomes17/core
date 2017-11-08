@@ -23,12 +23,12 @@
                 <table class="table table-responsive">
                     <thead>
                     <tr>
-                        <th>{{ __('labels.backend.access.users.table.last_name') }}</th>
                         <th>{{ __('labels.backend.access.users.table.first_name') }}</th>
+                        <th>{{ __('labels.backend.access.users.table.last_name') }}</th>
                         <th>{{ __('labels.backend.access.users.table.email') }}</th>
                         <th>{{ __('labels.backend.access.users.table.confirmed') }}</th>
                         <th>{{ __('labels.backend.access.users.table.roles') }}</th>
-                        <th>Other Permissions</th>
+                        <th>Outras Permissões</th>
                         <th>{{ __('labels.backend.access.users.table.social') }}</th>
                         <th>{{ __('labels.backend.access.users.table.last_updated') }}</th>
                         <th>{{ __('labels.general.actions') }}</th>
@@ -38,8 +38,8 @@
                         @if ($users->count())
                             @foreach ($users as $user)
                                 <tr>
-                                    <td>{{ $user->last_name }}</td>
                                     <td>{{ $user->first_name }}</td>
+                                    <td>{{ $user->last_name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{!! $user->confirmed_label !!}</td>
                                     <td>{!! $user->roles_label !!}</td>
@@ -50,7 +50,7 @@
                                 </tr>
                             @endforeach
                         @else
-                            <tr><td colspan="9"><p class="text-center">There are no deactivated users.</p></td></tr>
+                            <tr><td colspan="9"><p class="text-center">Não há usuários desativados.</p></td></tr>
                         @endif
                     </tbody>
                 </table>

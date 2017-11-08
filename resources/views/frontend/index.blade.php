@@ -56,7 +56,7 @@
                 <header class="row">
                     <div class="col-md-12">
                         <div class="titie-section wow fadeInDown animated ">
-                            <h1>FIZERAM HISTÓRIA</h1>
+                            <h1>Fizeram história</h1>
                         </div>
                     </div>
                 </header>
@@ -77,7 +77,7 @@
                 <header class="row">
                     <div class="col-md-12">
                         <div class="titie-section wow fadeInDown animated ">
-                            <h1>O CRIATÓRIO</h1>
+                            <h1>O Criatório</h1>
                         </div>
                     </div>
                 </header>
@@ -139,8 +139,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 wow fadeInDown animated ">
-                    <h1>OS MELHORES ANIMAIS</h1>
-                    <p>Da região de São Paulo</p>
+                    <hgroup>
+                        <h1>Os melhores animais</h1>
+                        <h2>Da região de São Paulo</h2>
+                    </hgroup>
                 </div>
             </div>
         </div>
@@ -185,10 +187,8 @@
                         @foreach ($depositions as $deposition)
                             <article class="item @if ($var1 == 0)active @endif">
                                 <div class="carousel-caption">
-                                    <p>
-                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $deposition->link }}" frameborder="0" allowfullscreen></iframe>
-                                    </p>
-                                    <h3>- {{ $deposition->name }} -</h3>
+                                    <p><iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $deposition->link }}" frameborder="0" allowfullscreen></iframe></p>
+                                    <h3>{{ $deposition->name }}</h3>
                                     <span>{{ $deposition->cityAndState }}</span>
                                 </div>
                             </article>

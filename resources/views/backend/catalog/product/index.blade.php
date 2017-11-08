@@ -26,6 +26,7 @@
                 <table class="table">
                     <thead>
                     <tr>
+                        <th>{{ __('labels.backend.catalog.products.table.photo') }}</th>
                         <th>{{ __('labels.backend.catalog.products.table.name') }}</th>
                         <th>{{ __('labels.backend.catalog.products.table.category') }}</th>
                         <th>{{ __('labels.backend.catalog.products.table.created') }}</th>
@@ -38,6 +39,7 @@
                     <tbody>
                         @foreach ($products as $product)
                             <tr>
+                                <td>{!! $product->photo !!}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->category }}</td>
                                 <td>{{ $product->created_at }}</td>

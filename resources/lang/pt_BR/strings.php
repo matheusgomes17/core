@@ -55,17 +55,10 @@ return [
             'title'      => 'Resultados da busca',
             'results'    => 'Resultados da busca por :query',
         ],
-
-        'welcome' => '<p>Este é o tema CoreUI por <a href="https://coreui.io/" target="_blank">creativeLabs</a>. Esta é uma versão reduzida com apenas os estilos e scripts necessários para que o tema funcione. Baixe a versão completa para começar a adicionar componentes a seu painel de controle.</p>
-<p>Todas as funcionalidades são meramente demonstrativas com exceção do menu <strong>Gerenciamento de Usuários</strong> à esquerda. Este <i>boilerplate</i> vem com uma biblioteca totalmente funcional de controle de acesso para gerenciar usuários/papéis/permissões.</p>
-<p>Tenha em mente que este é um trabalho em andamento e podem existir <i>bugs</i> ou outros problemas pelos quais não passei. Farei o meu melhor para corrigí-los à medida em que os recebo.</p>
-<p>Espero que você aproveite todo o trabalho que coloquei nisto. Por favor, visite a página do <a href="https://github.com/rappasoft/laravel-5-boilerplate" target="_blank">GitHub</a> para maiores informações e reporte quaisquer <a href="https://github.com/rappasoft/Laravel-5-Boilerplate/issues" target="_blank">problemas aqui</a>.</p>
-<p><strong>This project is very demanding to keep up with given the rate at which the master Laravel branch changes, so any help is appreciated.</strong></p>
-<p>- Anthony Rappa</p>',
     ],
     'emails' => [
         'auth' => [
-            'account_confirmed' => 'Your account has been confirmed.',
+            'account_confirmed'         => 'Sua conta foi confirmada.',
             'error'                     => 'Oops!',
             'greeting'                  => 'Olá!',
             'regards'                   => 'Nossos cumprimentos,',
@@ -79,41 +72,18 @@ return [
         ],
 
         'contact' => [
-            'email_body_title' => 'You have a new contact form request: Below are the details:',
-            'subject' => 'A new :app_name contact form submission!',
+            'email_body_title'  => 'Você tem um novo pedido de formulário de contato: abaixo estão os detalhes:',
+            'subject'           => 'Uma nova inscrição no Formulário de Contato :app_name !',
         ],
     ],
     'frontend' => [
-        'test'  => 'Teste',
-        'tests' => [
-            'based_on' => [
-                'permission' => 'Baseado na Permissão do Usuário - ',
-                'role'       => 'Baseado no Papel do Usuário - ',
-            ],
-            'js_injected_from_controller' => 'Javascript Injetado de um Controller',
-            'using_blade_extensions'      => 'Usando as Extensões Blade',
-            'using_access_helper'         => [
-                'array_permissions'     => 'Usando o "Access Helper" com um Array de Nomes de Permissões ou ID\'s onde o usuário precisa satisfazer ambas as condições.',
-                'array_permissions_not' => 'Usando o "Access Helper" com um Array de Nomes de Permissões ou ID\'s onde o usuário não precisa satisfazer ambas as condições.',
-                'array_roles'           => 'Usando o "Access Helper" com um Array de Nomes de Papéis ou ID\'s onde o usuário precisa satisfazer ambas as condições.',
-                'array_roles_not'       => 'Usando o "Access Helper" com um Array de Nomes de Papéis ou ID\'s onde o usuário não precisa satisfazer ambas as condições.',
-                'permission_id'         => 'Usando o "Access Helper" com o ID da Permissão',
-                'permission_name'       => 'Usando o "Access Helper" com o Nome da Permissão',
-                'role_id'               => 'Usando o "Access Helper" com o ID do Papel',
-                'role_name'             => 'Usando o "Access Helper" com o Nome do Papel',
-            ],
-            'view_console_it_works'          => 'Veja o console, você deverá ver a mensagem \'it works!\' que está vindo de FrontendController@index',
-            'you_can_see_because'            => 'Você pode ver isto porque você tem o papel de \':role\'!',
-            'you_can_see_because_permission' => 'Você pode ver isto porque você tem a permissão de \':permission\'!',
-        ],
-
         'general' => [
-            'joined'        => 'Joined',
+            'joined' => 'Entrou',
         ],
 
         'user' => [
-            'change_email_notice' => 'If you change your e-mail you will be logged out until you confirm your new e-mail address.',
-            'email_changed_notice' => 'You must confirm your new e-mail address before you can log in again.',
+            'change_email_notice' => 'Se você alterar seu e-mail, você será desconectado até confirmar seu novo endereço de e-mail.',
+            'email_changed_notice' => 'Você deve confirmar seu novo endereço de e-mail antes de poder fazer login novamente.',
             'profile_updated'  => 'Perfil atualizado com sucesso.',
             'password_updated' => 'Senha atualizada com sucesso.',
         ],

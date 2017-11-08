@@ -38,6 +38,7 @@ class CatalogController extends Controller
         $this->seo()->setTitle($category->name);
         $this->seo()->setDescription(strip_tags($category->description));
         $this->seo()->setCanonical(route('frontend.category', $category->slug));
+        $this->seo()->metatags()->addKeyword(['indio gigante', 'gigante', 'galo', 'galo gigante', 'galinha', 'galinha gigante', 'chideroli', 'criatorio', 'criatório', 'criatório chideroli', 'criatorio chideroli', 'pintinho', 'galos', 'galinhas', 'galos gigante', 'galinhas gigante', 'aves', 'aves gigante']);
         $this->seo()->opengraph()->setUrl(route('frontend.category', $category->slug));
         $this->seo()->opengraph()->addProperty('type', 'website');
         $this->seo()->opengraph()->addProperty('locale', 'pt-br');
@@ -57,6 +58,7 @@ class CatalogController extends Controller
         $this->seo()->setTitle($product->name);
         $this->seo()->setDescription(strip_tags($product->description));
         $this->seo()->setCanonical(route('frontend.product', $product->slug));
+        $this->seo()->metatags()->addKeyword(['indio gigante', 'gigante', 'galo', 'galo gigante', 'galinha', 'galinha gigante', 'chideroli', 'criatorio', 'criatório', 'criatório chideroli', 'criatorio chideroli', 'pintinho', 'galos', 'galinhas', 'galos gigante', 'galinhas gigante', 'aves', 'aves gigante']);
         $this->seo()->opengraph()->setUrl(route('frontend.product', $product->slug));
         $this->seo()->opengraph()->addProperty('type', 'website');
         $this->seo()->opengraph()->addProperty('locale', 'pt-br');

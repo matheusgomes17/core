@@ -73,6 +73,12 @@
 
                     <ul class="nav-dropdown-items">
                         <li class="nav-item">
+                            <a class="nav-link {{ active_class(Active::checkUriPattern('admin/system/gallery*')) }}"
+                               href="{{ route('admin.system.gallery.index') }}">
+                                {{ __('labels.backend.system.galleries.management') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link {{ active_class(Active::checkUriPattern('admin/system/deposition*')) }}"
                                href="{{ route('admin.system.deposition.index') }}">
                                 {{ __('labels.backend.system.depositions.management') }}

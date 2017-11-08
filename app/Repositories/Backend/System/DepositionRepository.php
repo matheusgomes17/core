@@ -10,7 +10,6 @@ use MVG\Models\System\Deposition;
 use MVG\Repositories\Backend\ImageRepository;
 use MVG\Repositories\BaseEloquentRepository;
 use MVG\Repositories\Traits\CacheResults;
-use MVG\Repositories\Traits\ImageManager;
 use MVG\Exceptions\GeneralException;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
