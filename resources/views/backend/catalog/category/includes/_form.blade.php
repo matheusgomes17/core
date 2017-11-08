@@ -23,17 +23,6 @@
         <div class="row mt-4 mb-4">
             <div class="col">
                 <div class="form-group row">
-                    {{ html()->label(__('validation.attributes.backend.catalog.categories.cover'))
-                        ->class('col-md-2 form-control-label')
-                        ->for('cover') }}
-
-                    <div class="col-md-10">
-                        {{ html()->file('cover')
-                            ->class('form-control') }}
-                    </div><!--col-->
-                </div><!--form-group-->
-
-                <div class="form-group row">
                     {{ html()->label(__('validation.attributes.backend.catalog.categories.name'))
                         ->class('col-md-2 form-control-label')
                         ->for('name') }}

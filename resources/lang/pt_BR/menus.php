@@ -62,6 +62,19 @@ return [
                 'management' => 'Gerenciamento de Depoimentos',
                 'main'       => 'Depoimentos',
             ],
+            'galleries' => [
+                'all'        => 'Todas as Galerias',
+                'create'     => 'Criar Galeria',
+                'image' => [
+                    'create' => 'Criar Imagem'
+                ],
+                'video' => [
+                    'create' => 'Criar Vídeo'
+                ],
+                'edit'       => 'Editar Galerias',
+                'management' => 'Gerenciamento de Galerias',
+                'main'       => 'Galerias',
+            ],
         ],
         'log-viewer' => [
             'main'      => 'Visualizador de Log',

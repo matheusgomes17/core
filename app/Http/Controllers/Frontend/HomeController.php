@@ -6,6 +6,7 @@ use MVG\Http\Controllers\Controller;
 use MVG\Repositories\Frontend\Catalog\ProductRepository;
 use MVG\Repositories\Frontend\Catalog\CategoryRepository;
 use MVG\Repositories\Frontend\System\DepositionRepository;
+use MVG\Repositories\Frontend\System\GalleryRepository;
 use MVG\Http\Requests\Frontend\Search\SearchRequest;
 
 /**
@@ -28,15 +29,21 @@ class HomeController extends Controller
      */
     protected $depositionRepository;
 
+    /**
+     * @var GalleryRepository
+     */
+    protected $galleryRepository;
+
     public function __construct(
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
-        DepositionRepository $depositionRepository
-    )
-    {
+        DepositionRepository $depositionRepository,
+        GalleryRepository $galleryRepository
+    ){
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
         $this->depositionRepository = $depositionRepository;
+        $this->galleryRepository = $galleryRepository;
     }
 
     /**
@@ -45,7 +52,7 @@ class HomeController extends Controller
     public function index()
     {
         $categoryRepository = $this->categoryRepository;
-        dd($categoryRepository->getCategoryRandomProduct(6, 1));
+
         $products = collect([
             $categoryRepository->getCategoryRandomProduct(2, 1),
             $categoryRepository->getCategoryRandomProduct(3, 1),
@@ -54,6 +61,16 @@ class HomeController extends Controller
             $categoryRepository->getCategoryRandomProduct(6, 1),
             $categoryRepository->getCategoryRandomProduct(7, 1)
         ]);
+
+        $this->seo()->setTitle('Início');
+        $this->seo()->setDescription('Indio Gigante');
+        $this->seo()->setCanonical(route('frontend.index'));
+        $this->seo()->metatags()->addKeyword(['indio gigante', 'gigante', 'galo', 'galo gigante', 'galinha', 'galinha gigante', 'chideroli', 'criatorio', 'criatório', 'criatório chideroli', 'criatorio chideroli', 'pintinho', 'galos', 'galinhas', 'galos gigante', 'galinhas gigante', 'aves', 'aves gigante']);
+        $this->seo()->opengraph()->setUrl(route('frontend.index'));
+        $this->seo()->opengraph()->addProperty('type', 'website');
+        $this->seo()->opengraph()->addProperty('locale', 'pt-br');
+        $this->seo()->opengraph()->addImage(asset('img/logo.png'));
+
         return view('frontend.index')
             ->withReprodutores($categoryRepository->getCategoryRandomProduct(2, 1))
             ->withMatrizes($categoryRepository->getCategoryRandomProduct(3, 1))
@@ -68,12 +85,38 @@ class HomeController extends Controller
     }
 
     /**
-     * @return \Illuminate\View\View
+     * @param SearchRequest $request
+     * @return mixed
      */
     public function search(SearchRequest $request)
     {
+        $this->seo()->setTitle('Pesquisa');
+        $this->seo()->setDescription('Indio Gigante');
+        $this->seo()->setCanonical(route('frontend.search'));
+        $this->seo()->metatags()->addKeyword(['indio gigante', 'gigante', 'galo', 'galo gigante', 'galinha', 'galinha gigante', 'chideroli', 'criatorio', 'criatório', 'criatório chideroli', 'criatorio chideroli', 'pintinho', 'galos', 'galinhas', 'galos gigante', 'galinhas gigante', 'aves', 'aves gigante']);
+        $this->seo()->opengraph()->setUrl(route('frontend.index'));
+        $this->seo()->opengraph()->addProperty('type', 'website');
+        $this->seo()->opengraph()->addProperty('locale', 'pt-br');
+        $this->seo()->opengraph()->addImage(asset('img/logo.png'));
+
         return view('frontend.search')
             ->withKeyword($request->input('pesquisa'))
             ->withProducts($this->productRepository->getSearchPaginated(2));
+    }
+
+
+    public function gallery()
+    {
+        $this->seo()->setTitle('Galeria');
+        $this->seo()->setDescription('Indio Gigante');
+        $this->seo()->setCanonical(route('frontend.gallery'));
+        $this->seo()->metatags()->addKeyword(['indio gigante', 'gigante', 'galo', 'galo gigante', 'galinha', 'galinha gigante', 'chideroli', 'criatorio', 'criatório', 'criatório chideroli', 'criatorio chideroli', 'pintinho', 'galos', 'galinhas', 'galos gigante', 'galinhas gigante', 'aves', 'aves gigante']);
+        $this->seo()->opengraph()->setUrl(route('frontend.gallery'));
+        $this->seo()->opengraph()->addProperty('type', 'website');
+        $this->seo()->opengraph()->addProperty('locale', 'pt-br');
+        $this->seo()->opengraph()->addImage(asset('img/logo.png'));
+
+        return view('frontend.gallery')
+            ->withGalleries($this->galleryRepository->getAll());
     }
 }

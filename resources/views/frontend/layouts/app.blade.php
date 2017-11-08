@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="csrf-token" content="{{ csrf_token() }}" />
-        <meta name="description" content="@yield('meta_description', 'Criatório Chideroli')" />
         <meta name="author" content="@yield('meta_author', 'Junior Chideroli')" />
         <meta name="msapplication-TileColor" content="#FFFFFF" />
         <meta name="msapplication-TileImage" content="{{ asset('img/favicon/ms-icon-144x144.png') }}" />
@@ -24,7 +23,9 @@
         <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('img/favicon/favicon-96x96.png') }}" />
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/favicon/favicon-16x16.png') }}" />
         <link rel="manifest" href="{{ asset('img/favicon/manifest.json') }}" />
-        <title>@yield('title', app_name())</title>
+
+        {!! SEO::generate() !!}
+
         @yield('meta')
 
         @stack('before-styles')
@@ -35,16 +36,19 @@
         @stack('after-styles')
     </head>
     <body>
-        <div id="preloader">
+        <!--<div id="preloader">
             <div class="preloader-area">
                 <div class="preloader-box">
                     <div class="preloader"></div>
                 </div>
             </div>
-        </div>
+        </div>-->
         @include('includes.partials.logged-in-as')
 
-        @include('frontend.includes.header')
+        <header>
+            <h1 class="hidden">{{ app_name() }}</h1>
+            @include('frontend.includes.header')
+        </header><!-- /header -->
 
         <main>
             @include('frontend.includes.partials.messages')
@@ -53,7 +57,6 @@
 
         <!-- Scripts -->
         @stack('before-scripts')
-        @stack('after-scripts')
 
         @include('frontend.includes.footer')
         @include('includes.partials.ga')
@@ -64,5 +67,7 @@
         <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
         <script src="{{ asset('js/wow.min.js') }}"></script>
         <script src="{{ asset('js/custom.js') }}"></script>
+
+        @stack('after-scripts')
     </body>
 </html>

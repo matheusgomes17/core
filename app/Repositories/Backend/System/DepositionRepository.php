@@ -10,7 +10,6 @@ use MVG\Models\System\Deposition;
 use MVG\Repositories\Backend\ImageRepository;
 use MVG\Repositories\BaseEloquentRepository;
 use MVG\Repositories\Traits\CacheResults;
-use MVG\Repositories\Traits\ImageManager;
 use MVG\Exceptions\GeneralException;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
@@ -85,7 +84,7 @@ class DepositionRepository extends BaseEloquentRepository
 
                     $image = new ImageRepository();
                     $file = request()->file('cover');
-                    $deposition->cover = $image->saveImage($file, '$depositions', 120);
+                    $deposition->cover = $image->saveImage($file, 'depositions', 120);
                     $deposition->save();
                 }
 
@@ -122,7 +121,7 @@ class DepositionRepository extends BaseEloquentRepository
                     $image = new ImageRepository();
                     $file = request()->file('cover');
                     unlink(public_path($deposition->cover));
-                    $deposition->cover = $image->saveImage($file, '$depositions', 120);
+                    $deposition->cover = $image->saveImage($file, 'depositions', 120);
                     $deposition->save();
                 }
 

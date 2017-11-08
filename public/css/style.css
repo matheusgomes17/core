@@ -201,7 +201,7 @@ html, body, .wrapper{
 }
 .titie-section h1{
     margin: 0;
-    padding: 0;
+    padding: 0 0 30px 0;;
     display: block;
     text-align: center;
     font-size: 48px;
@@ -281,9 +281,6 @@ html, body, .wrapper{
     margin: 0 auto;
     left: 0;
     right: 0;
-}
-.white-title{
-
 }
 
 /*
@@ -659,14 +656,20 @@ a.carousel-control.right > span{
     display: block;
     padding: 100px 0 80px;
 }
+
+.new-section #gallery {
+    margin: 60px 0 50px 0;
+    text-align: center;
+}
 .product-item{
     position: relative;
     margin-top: 30px;
-    transition: all 0.5s
+    transition: all 0.5s;
+    height: 400px;
 }
 .product-item img{
     width: 100%;
-    height: auto;
+    height: 400px;
 }
 
 .product-hover{
@@ -742,7 +745,7 @@ a.carousel-control.right > span{
 .product-item:hover .product-title i{
     color: #FFF;
 }
-.product-title h3{
+.product-title h1{
     margin: 0;
     padding: 0;
     text-align: left;
@@ -1185,7 +1188,7 @@ a.carousel-control.right > span{
     color: #fff;
 }
 .contact-section .left-content{}
-.contact-section .left-content h1{
+.contact-section .left-content .contact_title{
     font-size: 68px;
     margin: 0;
     padding: 0;
@@ -1193,11 +1196,11 @@ a.carousel-control.right > span{
     line-height: 1;
     font-weight: 300;
 }
-.contact-section .left-content h1 span{
+.contact-section .left-content .contact_title span{
     color: #D96D00;
 }
 
-.contact-section .left-content h3{
+.contact-section .left-content .contact_subtitle{
     color: #fff;
     display: block;
     font-size: 20px;
@@ -1481,6 +1484,10 @@ div.footer p a{
     .navbar-default .navbar-collapse, .navbar-default .navbar-form{
         overflow: hidden;
     }
+    ul.navbar-nav.cart-menu li{
+        margin-right: 10px;
+        display: inline-block;
+    }
     ul.navbar-nav.cart-menu li a{
         padding: 15px 0;
     }
@@ -1586,14 +1593,7 @@ div.footer p a{
 .widget:last-child {
     margin:0;padding:0
 }
-h3.sidebar-title {
-    border-bottom: 1px solid #e8e8e9;
-    margin: 0 0 20px;
-    padding: 0 0 5px;font-size: 14px;
-    text-transform: uppercase;
-}
-
-h3.sidebar-title {
+h1.sidebar-title {
     border-bottom: 1px solid #e8e8e9;
     margin: 0 0 20px;
     padding: 0 0 5px;font-size: 14px;
@@ -1635,13 +1635,14 @@ ul.sidebar-menu li a:hover {}
     position: relative;
     z-index: 99;
 }
-h2.breadcrumb-title {
+.breadcrumb-title {
     color: #fff;
     display: inline-block;
     font-size: 35px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
+    padding: 40px 0;
 }
 .breadcrumbs > ul li {
     color: #fff;
@@ -1713,7 +1714,6 @@ h2.breadcrumb-title {
 .details-tab:hover .owl-nav div {
     opacity: 1;
 }
-
 .single-product-dec > h2 {
     font-size: 30px;
     margin-bottom: 5px;
@@ -1832,6 +1832,38 @@ h2.breadcrumb-title {
 }
 .pro-shared {
     margin-top: 31px;
+}
+.pro-shared .social-media{
+    display: block;
+    margin-top: 10px;
+}
+.pro-shared .social-media ul{
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+.pro-shared .social-media ul li{
+    list-style: none;
+    display: inline-block;
+    margin-right: 10px;
+}
+.pro-shared .social-media ul li a{
+    color: #fff;
+}
+.pro-shared .social-media ul li a i{
+    height: 35px;
+    width: 35px;
+    font-size: 20px;
+    border: 1px solid #fff;
+    text-align: center;
+    padding: 7px 0;
+}
+.pro-shared .social-media ul li a:hover i{
+    background: #3C5086;
+    border: 1px solid #3C5086;
+}
+.pro-shared .social-media .fb {
+    background-color: #4862A3;
 }
 .single-cart-color {
     padding: 28px 0 33px;

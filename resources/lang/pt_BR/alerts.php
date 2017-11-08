@@ -55,6 +55,18 @@ return [
             'deleted'             => 'O depoimento foi excluído com sucesso.',
             'updated'             => 'O depoimento foi atualizado com sucesso.',
         ],
+
+        'images' => [
+            'created'             => 'A imagem foi criada com sucesso.',
+            'deleted'             => 'A imagem foi excluída com sucesso.',
+            'updated'             => 'A imagem foi atualizada com sucesso.',
+        ],
+
+        'videos' => [
+            'created'             => 'O vídeo foi criado com sucesso.',
+            'deleted'             => 'O vídeo foi excluído com sucesso.',
+            'updated'             => 'O vídeo foi atualizado com sucesso.',
+        ],
     ],
 
     'frontend' => [

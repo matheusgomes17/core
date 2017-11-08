@@ -80,15 +80,23 @@ class ProductRepository extends BaseEloquentRepository
      * Get instance of model by column.
      *
      * @param  mixed $term search term
-     * @param int $paged
      * @param  string $column column to search
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getCollectionByColumn($term, $paged = 15, $column = 'slug')
+    public function getCollectionByColumn($term, $column = 'slug')
     {
         return $this->model
             ->with($this->requiredRelationships)
             ->where($column, '=', $term)
             ->first();
+    }
+
+    public function getRelated($term, $paged = 15, $column = 'slug')
+    {
+        return $this->model
+            ->with($this->requiredRelationships)
+            ->where($column, '<>', $term)
+            ->get()
+            ->random($paged);
     }
 }

@@ -102,7 +102,7 @@
                         ->for('status') }}
 
                     <div class="col-md-10">
-                        {{ Form::checkbox('status', null) }}
+                        {{ Form::checkbox('status', null, true) }}
                     </div><!--col-->
                 </div><!--form-group-->
 

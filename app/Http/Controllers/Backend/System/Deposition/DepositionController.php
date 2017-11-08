@@ -96,7 +96,7 @@ class DepositionController extends Controller
             'link'
         ));
 
-        return redirect()->route('admin.system.deposition.index')->withFlashSuccess(__('alerts.backend.Depositions.updated'));
+        return redirect()->route('admin.system.deposition.index')->withFlashSuccess(__('alerts.backend.depositions.updated'));
     }
 
     /**
@@ -109,6 +109,6 @@ class DepositionController extends Controller
     {
         $this->depositionRepository->delete($deposition->id);
 
-        return redirect()->route('admin.system.deposition.deleted')->withFlashSuccess(__('alerts.backend.Depositions.deleted'));
+        return redirect()->route('admin.system.deposition.index')->withFlashSuccess(__('alerts.backend.depositions.deleted'));
     }
 }

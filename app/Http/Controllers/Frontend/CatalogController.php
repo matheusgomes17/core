@@ -34,6 +34,15 @@ class CatalogController extends Controller
             ? $category->products()->paginate(12)
             : $category->allproducts()->paginate(12);
 
+
+        $this->seo()->setTitle($category->name);
+        $this->seo()->setDescription(strip_tags($category->description));
+        $this->seo()->setCanonical(route('frontend.category', $category->slug));
+        $this->seo()->metatags()->addKeyword(['indio gigante', 'gigante', 'galo', 'galo gigante', 'galinha', 'galinha gigante', 'chideroli', 'criatorio', 'criatório', 'criatório chideroli', 'criatorio chideroli', 'pintinho', 'galos', 'galinhas', 'galos gigante', 'galinhas gigante', 'aves', 'aves gigante']);
+        $this->seo()->opengraph()->setUrl(route('frontend.category', $category->slug));
+        $this->seo()->opengraph()->addProperty('type', 'website');
+        $this->seo()->opengraph()->addProperty('locale', 'pt-br');
+
         return view('frontend.category')
             ->withCategory($category)
             ->withProducts($products);
@@ -44,8 +53,19 @@ class CatalogController extends Controller
      */
     public function product($slug)
     {
+        $product = $this->productRepository->getCollectionByColumn($slug);
+
+        $this->seo()->setTitle($product->name);
+        $this->seo()->setDescription(strip_tags($product->description));
+        $this->seo()->setCanonical(route('frontend.product', $product->slug));
+        $this->seo()->metatags()->addKeyword(['indio gigante', 'gigante', 'galo', 'galo gigante', 'galinha', 'galinha gigante', 'chideroli', 'criatorio', 'criatório', 'criatório chideroli', 'criatorio chideroli', 'pintinho', 'galos', 'galinhas', 'galos gigante', 'galinhas gigante', 'aves', 'aves gigante']);
+        $this->seo()->opengraph()->setUrl(route('frontend.product', $product->slug));
+        $this->seo()->opengraph()->addProperty('type', 'website');
+        $this->seo()->opengraph()->addProperty('locale', 'pt-br');
+        $this->seo()->opengraph()->addImage(asset($product->cover));
+
         return view('frontend.product')
-            ->withRelated($this->productRepository->getCollectionByColumn($slug)->categories->products)
-            ->withProduct($this->productRepository->getCollectionByColumn($slug));
+            ->withRelated($this->productRepository->getRelated($slug, 4))
+            ->withProduct($product);
     }
 }

@@ -26,9 +26,9 @@ trait ProductAttribute
     public function getStatusLabelAttribute()
     {
         if ($this->isActive()) {
-            return "<label class='label label-success'>" . trans('labels.general.active') . '</label>';
+            return "<span class='badge badge-success'>" . trans('labels.general.active') . '</span>';
         }
-        return "<label class='label label-danger'>" . trans('labels.general.inactive') . '</label>';
+        return "<span class='badge badge-danger'>" . trans('labels.general.inactive') . '</span>';
     }
 
     /**
@@ -37,9 +37,9 @@ trait ProductAttribute
     public function getSoldLabelAttribute()
     {
         if ($this->isSold()) {
-            return "<label class='label label-danger'>Vendido</label>";
+            return "<span class='badge badge-danger'>Vendido</span>";
         }
-        return "<label class='label label-primary'>Em Estoque</label>";
+        return "<span class='badge badge-primary'>Em Estoque</span>";
     }
 
     /**
@@ -137,10 +137,18 @@ trait ProductAttribute
             $this->getDeletePermanentlyButtonAttribute();
         }
         return
-            $this->getShowButtonAttribute() .
+            //$this->getShowButtonAttribute() .
             $this->getEditButtonAttribute() .
             $this->getStatusButtonAttribute() .
             $this->getDeleteButtonAttribute();
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhotoAttribute()
+    {
+        return '<img src="'. asset($this->attributes['cover']) .'" width="35" />';
     }
 
     /**

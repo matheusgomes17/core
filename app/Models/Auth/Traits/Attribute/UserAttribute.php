@@ -324,20 +324,20 @@ trait UserAttribute
     {
         if ($this->trashed()) {
             return '
-				<div class="btn-group btn-group-sm" role="group" aria-label="User Actions">
+				<div class="btn-group btn-group-sm" role="group" aria-label="Ações do usuário">
 				  '.$this->restore_button.'
 				  '.$this->delete_permanently_button.'
 				</div>';
         }
 
         return '
-    	<div class="btn-group btn-group-sm" role="group" aria-label="User Actions">
+    	<div class="btn-group btn-group-sm" role="group" aria-label="Ações do usuário">
 		  '.$this->show_button.'
 		  '.$this->edit_button.'
 		
 		  <div class="btn-group" role="group">
 			<button id="userActions" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			  More
+			  Mais
 			</button>
 			<div class="dropdown-menu" aria-labelledby="userActions">
 			  '.$this->clear_session_button.'

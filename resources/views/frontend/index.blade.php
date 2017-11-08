@@ -16,7 +16,6 @@
 
                     <div class="carousel-caption">
                         <h1><b>INDIO GIGANTE</b> CHIDEROLI</h1>
-
                         <p>UM CRIATÓRIO DE <span>MONSTROS!</span></p>
                         <a href="#">Veja mais</a>
                     </div>
@@ -26,7 +25,6 @@
 
                     <div class="carousel-caption">
                         <h1><b>INDIO GIGANTE</b> CHIDEROLI</h1>
-
                         <p>UM CRIATÓRIO DE <span>MONSTROS!</span></p>
                         <a href="#">Veja mais</a>
                     </div>
@@ -36,7 +34,6 @@
 
                     <div class="carousel-caption">
                         <h1><b>INDIO GIGANTE</b> CHIDEROLI</h1>
-
                         <p>UM CRIATÓRIO DE <span>MONSTROS!</span></p>
                         <a href="#">Veja mais</a>
                     </div>
@@ -56,13 +53,13 @@
     @if ($madeHistory->count() > 0)
         <section class="new-section">
             <div class="container">
-                <div class="row">
+                <header class="row">
                     <div class="col-md-12">
                         <div class="titie-section wow fadeInDown animated ">
-                            <h1>FIZERAM HISTÓRIA</h1>
+                            <h1>Fizeram história</h1>
                         </div>
                     </div>
-                </div>
+                </header>
                 <div class="row">
                     @foreach ($madeHistory as $history)
                         <div class="col-md-3 col-sm-6 wow fadeInLeft animated" data-wow-delay="0.2s">
@@ -77,14 +74,13 @@
     @if (getMenuCategories()->count() > 0)
         <section class="featured-section">
             <div class="container">
-                <div class="row">
+                <header class="row">
                     <div class="col-md-12">
                         <div class="titie-section wow fadeInDown animated ">
-                            <h1>O CRIATÓRIO</h1>
+                            <h1>O Criatório</h1>
                         </div>
                     </div>
-                </div>
-
+                </header>
                 @foreach(getMenuCategories() as $menuCategories)
                     <div class="row">
                         <div class="col-md-12">
@@ -143,9 +139,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 wow fadeInDown animated ">
-                    <h1>OS MELHORES ANIMAIS</h1>
-
-                    <h2>Da região de São Paulo</h2>
+                    <hgroup>
+                        <h1>Os melhores animais</h1>
+                        <h2>Da região de São Paulo</h2>
+                    </hgroup>
                 </div>
             </div>
         </div>
@@ -154,13 +151,13 @@
     @if ($featured->count() > 0)
         <section class="best-seller-section">
             <div class="container">
-                <div class="row">
+                <header class="row">
                     <div class="col-md-12">
                         <div class="titie-section wow fadeInDown animated ">
                             <h1>Prêmiados</h1>
                         </div>
                     </div>
-                </div>
+                </header>
                 <div class="row">
                     @foreach ($featured as $feature)
                         <div class="col-md-3 col-sm-6 wow fadeInDown animated" data-wow-delay="0.2s">
@@ -175,37 +172,40 @@
     @if ($depositions->count() > 0)
     <section class="review-section">
         <div class="container">
-            <div class="row">
+            <header class="row">
                 <div class="col-md-12">
                     <div class="titie-section wow fadeInDown animated ">
                         <h1>Depoimentos</h1>
                     </div>
                 </div>
-            </div>
+            </header>
             <div class="row">
                 <div id="feedback" class="carousel slide feedback" data-ride="feedback">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
+                        <?php $var1 = 0 ?>
                         @foreach ($depositions as $deposition)
-                        <div class="item active">
-                            <div class="carousel-caption">
-                                <p>
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $deposition->link }}" frameborder="0" allowfullscreen></iframe>
-                                </p>
-                                <h3>- {{ $deposition->name }} -</h3>
-                                <span>{{ $deposition->cityAndState }}</span>
-                            </div>
-                        </div>
+                            <article class="item @if ($var1 == 0)active @endif">
+                                <div class="carousel-caption">
+                                    <p><iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $deposition->link }}" frameborder="0" allowfullscreen></iframe></p>
+                                    <h3>{{ $deposition->name }}</h3>
+                                    <span>{{ $deposition->cityAndState }}</span>
+                                </div>
+                            </article>
+                            <?php $var1++ ?>
                         @endforeach
                     </div>
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators review-controlar">
-                        @foreach ($depositions as $deposition)
-                        <li data-target="#feedback" data-slide-to="{{ $deposition->id-1 }}" class="active">
-                            <img src="{{ asset($deposition->cover) }}" width="320" height="439" alt="{{ $deposition->name }}">
-                        </li>
-                        @endforeach
-                    </ol>
+                    <footer>
+                        <ol class="carousel-indicators review-controlar">
+                            <?php $var2 = 0 ?>
+                            @foreach ($depositions as $deposition)
+                                <li data-target="#feedback" data-slide-to="{{ $var2 }}" class="@if ($var2 == 0) active @endif">
+                                    <img src="{{ asset($deposition->cover) }}" width="320" height="439" alt="{{ $deposition->name }}">
+                                </li>
+                                <?php $var2++ ?>
+                            @endforeach
+                        </ol>
+                    </footer>
                 </div>
             </div>
         </div>

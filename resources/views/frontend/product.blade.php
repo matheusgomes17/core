@@ -1,10 +1,10 @@
 @extends('frontend.layouts.app')
 
-@section('content')
+@section('content')<div id="fb-root"></div>
 	<div class="breadcrumbs-area breadcrumb-bg ptb-100">
 	    <div class="container">
 	        <div class="breadcrumbs text-center">
-                <h2 class="breadcrumb-title">{{ $product->name }}</h2>
+                <p class="breadcrumb-title">{{ $product->name }}</p>
                 <ul>
                     <li><a class="active" href="{{ route('frontend.index') }}">Início</a></li>
                     <li><a class="active" href="{{ route('frontend.category', $product->categories->slug) }}">{{ $product->categories->name }}</a></li>
@@ -25,7 +25,7 @@
 		                            <div class="tab-content">
 		                                <div class="tab-pane active">
 		                                    <div class="large-img">
-		                                        <img src="{{ asset($product->cover) }}" alt="" />
+		                                        <img src="{{ asset($product->getOriginalImage()) }}" alt="" />
 		                                    </div>
 		                                </div>
 		                            </div>
@@ -57,11 +57,13 @@
 		                            </div>
 		                            <div class="pro-shared">
 		                                <p>Compartilhe:</p>
-		                                <ul>
-		                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-		                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-		                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-		                                </ul>
+										<div class="social-media">
+											<ul>
+												<li class="fb"><a href="javascript: void(0);" onclick="window.open('http://www.facebook.com/sharer.php?u={{ urlencode(route('frontend.product', $product->slug)) }}/','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');" itemprop="url" rel="nofollow"><i class="fa fa-facebook"></i></a></li>
+												<li><g:plusone></g:plusone></li>
+												<li><a class="twitter-share-button" href="https://twitter.com/share" itemprop="url" rel="nofollow" data-url="{{ route('frontend.product', $product->slug) }}" data-text="{{ $product->name }}" data-via="GaloChideroli" data-lang="pt"></a></li>
+											</ul>
+										</div>
 		                            </div>
 		                        </div>
 		                    </div>
@@ -76,17 +78,23 @@
             <header class="row">
                 <div class="col-md-12">
                     <div class="titie-section">
-                        <h1>ANIMAIS RELACIONADOS</h1>
+                        <h1>Animais Relacionados</h1>
                     </div>
                 </div>
             </header>
             <div class="row">
-                @foreach ($related as $history)
+                @foreach ($related as $r)
                     <div class="col-md-3 col-sm-6 wow fadeInLeft animated" data-wow-delay="0.2s">
-                        @include ('frontend.includes.partials.product_item', ['model' => $history])
+                        @include ('frontend.includes.partials.product_item', ['model' => $r])
                     </div>
                 @endforeach
             </div>
         </div>
 	</section>
 @endsection
+
+@push ('after-scripts')
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="http://platform.twitter.com/widgets.js"></script>
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+@endpush

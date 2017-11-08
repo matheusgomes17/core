@@ -1,4 +1,4 @@
-<header class="header-section">
+<div class="header-section">
     <div class="navbar navbar-default">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -30,7 +30,7 @@
                 @endif
                 <ul class="nav navbar-nav navbar-right cart-menu">
                     <li>
-                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Galeria de Imagens">
+                        <a href="{{ route('frontend.gallery') }}" data-toggle="tooltip" data-placement="bottom" title="Galeria de Imagens">
                             <i class="fa fa-camera-retro fa-lg" aria-hidden="true"></i>
                         </a>
                     </li>
@@ -48,7 +48,7 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->
     </div>
-</header>
+</div>
 
 <div class="search-section">
     <div class="container">

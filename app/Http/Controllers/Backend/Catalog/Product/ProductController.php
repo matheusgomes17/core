@@ -35,7 +35,7 @@ class ProductController extends Controller
     public function index(ManageProductRequest $request)
     {
         return view('backend.catalog.product.index')
-            ->withProducts($this->productRepository->getPaginated(25, 'id', 'asc'));
+            ->withProducts($this->productRepository->getActivePaginated(25, 'id', 'asc'));
     }
 
     /**
